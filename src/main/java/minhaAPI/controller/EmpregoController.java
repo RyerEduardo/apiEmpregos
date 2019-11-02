@@ -32,7 +32,7 @@ public class EmpregoController {
     
     
     
-    @RequestMapping(value = "/emprego/salarioEntre {salario} {salario}", method = RequestMethod.GET)
+    @RequestMapping(value = "/emprego/salarioEntre {salario}-{salario}", method = RequestMethod.GET)
     public List<Emprego> FiltrarPorSalario(@PathVariable(value = "salario") float salarioMinimo, @PathVariable(value = "salario") float salarioMaximo)
     {
     	List<Emprego> empregos = empregoRepository.findAll(); //pega todos
