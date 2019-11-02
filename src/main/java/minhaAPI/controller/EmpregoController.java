@@ -33,7 +33,7 @@ public class EmpregoController {
     
     
     @RequestMapping(value = "/emprego/{salario}, {salario}", method = RequestMethod.GET)
-    public List<Emprego> FiltrarPorSalario(@PathVariable(value = "salarioMinimo") float salarioMinimo, @PathVariable(value = "salarioMaximo") float salarioMaximo)
+    public List<Emprego> FiltrarPorSalario(@PathVariable(value = "salario") float salarioMinimo, @PathVariable(value = "salario") float salarioMaximo)
     {
     	List<Emprego> empregos = empregoRepository.findAll(); //pega todos
     	List<Emprego> filtrados = new ArrayList<Emprego>(); //recebe os filtrados
@@ -52,7 +52,7 @@ public class EmpregoController {
     
     
     @RequestMapping(value = "/emprego/{salario}", method = RequestMethod.GET)
-    public List<Emprego> SalarioIgualMaior(@PathVariable(value = "salarioMinimo") float salarioMinimo)
+    public List<Emprego> SalarioIgualMaior(@PathVariable(value = "salario") float salarioMinimo)
     {
     	List<Emprego> empregos = empregoRepository.findAll(); //pega todos
     	List<Emprego> filtrados = new ArrayList<Emprego>(); //recebe os filtrados
