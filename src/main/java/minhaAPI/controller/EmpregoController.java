@@ -50,6 +50,24 @@ public class EmpregoController {
     }
     
     
+    
+    @RequestMapping(value = "/emprego/{salario}", method = RequestMethod.GET)
+    public List<Emprego> SalarioIgualMaior(@PathVariable(value = "salarioMinimo") float salarioMinimo)
+    {
+    	List<Emprego> empregos = empregoRepository.findAll(); //pega todos
+    	List<Emprego> filtrados = new ArrayList<Emprego>(); //recebe os filtrados
+    	
+    	for(int i=0; i<empregos.size(); i++) {
+    		if(empregos.get(i).getSalario() >= salarioMinimo) {
+    			filtrados.add(empregos.get(i)); //se atende o requisito, adiciona
+    		}
+    		
+    	}
+    	
+       return filtrados;
+       
+    }
+    
 
     @RequestMapping(value = "/emprego/{id}", method = RequestMethod.GET)
     public ResponseEntity<Emprego> GetById(@PathVariable(value = "id") Integer id)
