@@ -51,7 +51,7 @@ public class EmpregoController {
     
     
     
-    @RequestMapping(value = "/emprego/{salario}", method = RequestMethod.GET)
+    @RequestMapping(value = "/emprego/salarioApartirDe {salario}", method = RequestMethod.GET)
     public List<Emprego> SalarioIgualMaior(@PathVariable(value = "salario") float salarioMinimo)
     {
     	List<Emprego> empregos = empregoRepository.findAll(); //pega todos
