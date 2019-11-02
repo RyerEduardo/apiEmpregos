@@ -1,6 +1,7 @@
 package minhaAPI.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,27 @@ public class EmpregoController {
     public List<Emprego> Get() {
         return empregoRepository.findAll();
     }
+    
+    
+    
+    @RequestMapping(value = "/emprego/{salario}, {salario}", method = RequestMethod.GET)
+    public List<Emprego> FiltrarPorSalario(@PathVariable(value = "salarioMinimo") float salarioMinimo, @PathVariable(value = "salarioMaximo") float salarioMaximo)
+    {
+    	List<Emprego> empregos = empregoRepository.findAll(); //pega todos
+    	List<Emprego> filtrados = new ArrayList<Emprego>(); //recebe os filtrados
+    	
+    	for(int i=0; i<empregos.size(); i++) {
+    		if(empregos.get(i).getSalario() >= salarioMinimo && empregos.get(i).getSalario() <= salarioMaximo) {
+    			filtrados.add(empregos.get(i)); //se atende o requisito, adiciona
+    		}
+    		
+    	}
+    	
+       return filtrados;
+       
+    }
+    
+    
 
     @RequestMapping(value = "/emprego/{id}", method = RequestMethod.GET)
     public ResponseEntity<Emprego> GetById(@PathVariable(value = "id") Integer id)
