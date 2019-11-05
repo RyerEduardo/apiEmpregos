@@ -10,6 +10,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +32,15 @@ public class EmpregoController {
         return empregoRepository.findAll();
     }
     
+    @RequestMapping(value = "/emprego/salarioEntre{salario}/{salario2}", method = RequestMethod.GET)
+	public List<Emprego> FiltrarPorSalario(@PathVariable(value = "salario") float salario, @PathVariable(value = "salario2") float salario2) {
+	
+		return empregoRepository.salarioEntre(salario, salario2);
+	}
     
+   
     
-    @RequestMapping(value = "/emprego/salarioEntre {salario}/{salario2}", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "/emprego/salarioEntre {salario}/{salario2}", method = RequestMethod.GET)
     public List<Emprego> FiltrarPorSalario(@PathVariable(value = "salario") float salarioMinimo, @PathVariable(value = "salario2") float salarioMaximo)
     {
     	List<Emprego> empregos = empregoRepository.findAll(); //pega todos
@@ -47,7 +55,7 @@ public class EmpregoController {
     	
        return filtrados;
        
-    }
+    } */
     
     
     
