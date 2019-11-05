@@ -10,7 +10,7 @@ import minhaAPI.model.Emprego;
 
 @Repository
 public interface EmpregoRepository extends JpaRepository<Emprego, Integer>{
-	@Query(value = "SELECT * FROM emprego WHERE emprego.salario >= :salario and emprego.salario <= :salario2", nativeQuery = true)
+	@Query(value = "SELECT * FROM emprego WHERE emprego.salario between :salario and :salario2", nativeQuery = true)
 	List <Emprego> salarioEntre(float salario, float salario2);
 
 }
